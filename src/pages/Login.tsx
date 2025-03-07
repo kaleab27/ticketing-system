@@ -14,29 +14,19 @@ import {
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import useLogin from "@/hooks/useLogin";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login, loading, error } = useLogin();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
 
-    try {
-      // Login Logic
-
-      navigate("/");
-    } catch (error) {
-      if (error instanceof Error)
-        setError(error.message || "An error occurred during login");
-    } finally {
-      setLoading(false);
-    }
+    await login(email, password);
+    if (!error) navigate("/dashboard");
   };
 
   return (

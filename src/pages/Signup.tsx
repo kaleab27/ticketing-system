@@ -14,30 +14,20 @@ import {
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import useSignup from "@/hooks/useSignup";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { signup, loading, error } = useSignup();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
 
-    try {
-      // Create the user in database
-
-      navigate("/login");
-    } catch (error) {
-      if (error instanceof Error)
-        setError(error.message || "An error occurred during signup");
-    } finally {
-      setLoading(false);
-    }
+    await signup(name, email, password);
+    if (!error) navigate("/login");
   };
 
   return (

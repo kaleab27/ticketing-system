@@ -14,9 +14,9 @@ export interface Ticket {
   id: string;
   title: string;
   description: string;
-  status: "open" | "in progress" | "resolved";
-  created_at: string;
-  user_id: string;
+  status: "Open" | "In Progress" | "Closed";
+  createdAt: string;
+  user: string;
   profiles?: {
     name: string;
     email: string;
@@ -92,7 +92,7 @@ export function TicketList({ tickets, isAdmin }: TicketListProps) {
                 )}
                 <p>
                   Created:{" "}
-                  {formatDistanceToNow(new Date(ticket.created_at), {
+                  {formatDistanceToNow(new Date(ticket.createdAt), {
                     addSuffix: true,
                   })}
                 </p>
@@ -112,9 +112,9 @@ export function TicketList({ tickets, isAdmin }: TicketListProps) {
                       <SelectValue placeholder="Select status" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="open">Open</SelectItem>
-                      <SelectItem value="in progress">In Progress</SelectItem>
-                      <SelectItem value="resolved">Resolved</SelectItem>
+                      <SelectItem value="Open">Open</SelectItem>
+                      <SelectItem value="In Progress">In Progress</SelectItem>
+                      <SelectItem value="Closed">Resolved</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

@@ -15,13 +15,10 @@ export default function useGetTickets() {
         },
       };
 
-      try {
-        const response = await fetch(`${url}/tickets`, options);
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.error(error);
-        return error;
+      const response = await fetch(`${url}/tickets`, options);
+
+      if (!response.ok) {
+        throw new Error(`Error fetching tickets: ${response.statusText}`);
       }
     },
   });

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useLocation } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 export default function DashboardHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -29,6 +30,11 @@ export default function DashboardHeader() {
     </Link>
   );
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/")
+  }
+
   return (
     <header className="bg-white shadow">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,7 +50,7 @@ export default function DashboardHeader() {
           </div>
           <div className="hidden md:flex items-center space-x-4">
             <span className="text-sm text-gray-700">Demo User</span>
-            <Button variant="outline">Sign Out (Demo)</Button>
+            <Button variant="outline" onClick={handleLogout}>Sign Out (Demo)</Button>
           </div>
           <div className="md:hidden">
             <Button
@@ -77,7 +83,7 @@ export default function DashboardHeader() {
               </div>
             </div>
             <div className="mt-3 px-2 space-y-1">
-              <Button variant="outline" className="w-full justify-start">
+              <Button variant="outline" className="w-full justify-start" onClick={handleLogout}>
                 Sign Out (Demo)
               </Button>
             </div>

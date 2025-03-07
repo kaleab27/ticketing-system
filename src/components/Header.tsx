@@ -49,8 +49,7 @@ export default function DashboardHeader() {
             </nav>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <span className="text-sm text-gray-700">Demo User</span>
-            <Button variant="outline" onClick={handleLogout}>Sign Out (Demo)</Button>
+            <Button variant="outline" onClick={handleLogout}>Sign Out</Button>
           </div>
           <div className="md:hidden">
             <Button
@@ -75,16 +74,9 @@ export default function DashboardHeader() {
             <NavLink href="/dashboard/admin">Admin Dashboard</NavLink>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
-            <div className="flex items-center px-5">
-              <div className="ml-3">
-                <div className="text-base font-medium text-gray-800">
-                  Demo User
-                </div>
-              </div>
-            </div>
             <div className="mt-3 px-2 space-y-1">
               <Button variant="outline" className="w-full justify-start" onClick={handleLogout}>
-                Sign Out (Demo)
+                Sign Out
               </Button>
             </div>
           </div>

@@ -2,6 +2,11 @@
 
 A modern support ticketing system built with React, TypeScript, and Vite. Manage customer support requests efficiently with role-based access control and real-time status updates.
 
+Hosted Link - https://ticketing-system-lemon.vercel.app/
+Admin Accout
+- Email: kaleab@gmail.com
+- Password: kaleab
+
 ![TicketPro Screenshot](screenshot.png)
 
 ## Features

@@ -8,6 +8,7 @@ import Login from '@/pages/Login.tsx'
 import Home from '@/pages/dashboard/index.tsx'
 import Dashboard from '@/pages/dashboard/Dashboard'
 import AdminDashboard from '@/pages/dashboard/AdminDashboard'
+import LandingPage from './pages/LandingPage'
 
 const queryClient = new QueryClient()
 
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route path="/dashboard" element={<Home />}>
             <Route index element={<Dashboard />} />
             <Route path="admin" element={<AdminDashboard />} />

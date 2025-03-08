@@ -2,6 +2,7 @@ import { useState } from "react";
 
 interface LoginResponse {
   token: string;
+  role: "user" | "admin";
 }
 
 export default function useLogin() {
@@ -33,6 +34,7 @@ export default function useLogin() {
 
       const data: LoginResponse = await response.json();
       localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.role);
       setToken(data.token);
     } catch (err) {
       setError((err as Error).message);

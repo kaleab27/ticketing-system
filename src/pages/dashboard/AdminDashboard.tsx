@@ -4,6 +4,9 @@ import useGetTickets from "@/hooks/useGetTickets";
 export default function AdminDashboard() {
   const { data, isPending, error } = useGetTickets();
   console.log(data, isPending, error);
+
+  const status = localStorage.getItem("role");
+
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
@@ -14,7 +17,7 @@ export default function AdminDashboard() {
         ) : isPending ? (
           "Loading the Tickets"
         ) : (
-          <TicketList tickets={data} isAdmin={true} />
+          <TicketList tickets={data} isAdmin={status === "admin"} />
         )}
       </div>
     </div>

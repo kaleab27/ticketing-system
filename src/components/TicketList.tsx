@@ -12,7 +12,7 @@ import { formatDistanceToNow } from "date-fns";
 import useUpdateTicket from "@/hooks/useUpdateTicket";
 
 export interface Ticket {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   status: "Open" | "In Progress" | "Closed";
@@ -106,9 +106,9 @@ export function TicketList({ tickets, isAdmin }: TicketListProps) {
                   <Select
                     defaultValue={ticket.status}
                     onValueChange={(value) =>
-                      handleStatusChange(ticket.id, value as "Open" | "In Progress" | "Closed")
+                      handleStatusChange(ticket._id, value as "Open" | "In Progress" | "Closed")
                     }
-                    disabled={updating === ticket.id}
+                    disabled={updating === ticket._id}
                   >
                     <SelectTrigger className="w-[140px]">
                       <SelectValue placeholder="Select status" />

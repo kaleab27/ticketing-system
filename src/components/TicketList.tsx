@@ -72,7 +72,7 @@ export function TicketList({ tickets, isAdmin }: TicketListProps) {
   return (
     <div className="space-y-4">
       {tickets.map((ticket) => (
-        <Card key={ticket.id} className="overflow-hidden">
+        <Card key={ticket._id} className="overflow-hidden">
           <CardContent className="p-6">
             <div className="flex justify-between items-start mb-2">
               <h3 className="text-lg font-semibold">{ticket.title}</h3>

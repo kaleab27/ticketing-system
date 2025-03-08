@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { formatDistanceToNow } from "date-fns";
+import useUpdateTicket from "@/hooks/useUpdateTicket";
 
 export interface Ticket {
   id: string;
@@ -30,11 +31,12 @@ interface TicketListProps {
 
 export function TicketList({ tickets, isAdmin }: TicketListProps) {
   const [updating, setUpdating] = useState<string | null>(null);
+  const updateTicket = useUpdateTicket();
 
-  const handleStatusChange = async (ticketId: string, newStatus: string) => {
+  const handleStatusChange = async (ticketId: string, newStatus: "Open" | "In Progress" | "Closed") => {
     setUpdating(ticketId);
     try {
-      //   Update Ticket Logic
+      updateTicket.mutate({ticketId, status: newStatus});
 
       console.log(newStatus);
     } catch (error) {
@@ -104,7 +106,7 @@ export function TicketList({ tickets, isAdmin }: TicketListProps) {
                   <Select
                     defaultValue={ticket.status}
                     onValueChange={(value) =>
-                      handleStatusChange(ticket.id, value)
+                      handleStatusChange(ticket.id, value as "Open" | "In Progress" | "Closed")
                     }
                     disabled={updating === ticket.id}
                   >

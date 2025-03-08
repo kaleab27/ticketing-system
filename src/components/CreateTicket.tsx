@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle, CheckCircle } from "lucide-react";
+import useCreateTicket from "@/hooks/useCreateTicket";
 
 export function CreateTicketForm() {
   const [title, setTitle] = useState("");
@@ -13,6 +14,7 @@ export function CreateTicketForm() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const createTicket = useCreateTicket();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ export function CreateTicketForm() {
     setSuccess(false);
 
     try {
-      //   Add Ticket Logic
+      createTicket.mutate({ title, description });
 
       setSuccess(true);
       setTitle("");

@@ -79,7 +79,7 @@ export default function LandingPage() {
                   <Link to="/signup">Get Started</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <Link to="/dashboard">View Demo</Link>
+                  <Link to="/dashboard">Go to App</Link>
                 </Button>
               </div>
             </div>
